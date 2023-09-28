@@ -1,0 +1,55 @@
+#%RAML 1.0
+title: System API 
+types:
+  Account: !include /datatype/Account.raml
+  AccountType: !include /datatype/AccountType.raml
+
+/accounts:
+  get:
+    description: to retrieve customer accounts
+    headers:
+      user_id:
+    queryParameters:
+      accounttype:
+        description: Used to filter based on account type
+        type: AccountType
+        required: false
+      accountname:
+        description: used to filter based upon the account name
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items: Account
+            examples:
+              output: !include /examples/Accounts.raml
+
+  post:
+    description: to create an account
+    headers:
+      user_id:
+    body:
+      application/json:
+        type: array
+        items: Account
+        examples:
+          output: !include /examples/AccountsPost.raml
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: Accounts Created
+                
+          
+          
+
+
+
+
+              
+
+      
+
